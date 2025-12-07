@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output files (keep structure but ignore generated PPTs)
+output/*.pptx
+!output/.gitkeep
+
+# Excel files (sensitive data)
+excel_files/*.xlsx
+excel_files/*.xlsb
+excel_files/*.xls
+!excel_files/.gitkeep
+
+# Template PPT (may contain sensitive data)
+*.pptx
+!AIL LT - Sep'25.pptx
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
