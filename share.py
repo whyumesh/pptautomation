@@ -1,20 +1,18 @@
-import http.server
-import socketserver
-import socket
+import requests
+import sys
+import os
 
+SERVER_IP = "192.168.43.55"   # personal laptop IP
 PORT = 8000
 
-# Get local IP address
-hostname = socket.gethostname()
-local_ip = socket.gethostbyname(hostname)
+file_path = sys.argv[1]
+filename = os.path.basename(file_path)
 
-Handler = http.server.SimpleHTTPRequestHandler
+with open(file_path, "rb") as f:
+    r = requests.post(
+        f"http://{SERVER_IP}:{PORT}",
+        data=f,
+        headers={"X-Filename": filename}
+    )
 
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("====================================")
-    print("📂 File sharing server started")
-    print(f"🌐 Access from other device:")
-    print(f"👉 http://{local_ip}:{PORT}")
-    print("❌ Press CTRL + C to stop")
-    print("====================================")
-    httpd.serve_forever()
+print("Upload status:", r.status_code)
